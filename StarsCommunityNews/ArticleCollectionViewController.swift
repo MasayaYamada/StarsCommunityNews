@@ -18,7 +18,7 @@ class ArticleCollectionViewController: UICollectionViewController {
     var currentString = ""
     
     //@IBOutlet weak var articleTitle: UILabel!
-    
+    @IBOutlet weak var articleTitle: UILabel!
     
     let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
     let ITEM_ELEMENT_NAME = "item"
@@ -33,9 +33,8 @@ class ArticleCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        let articleTitle = cell.contentView as? UILabel
-        articleTitle!.text = articles[indexPath.row].title
-        
+        articleTitle = cell.contentView.viewWithTag(1) as? UILabel
+        articleTitle.text = articles[indexPath.row].title
         return cell
     }
     

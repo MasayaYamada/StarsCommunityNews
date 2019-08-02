@@ -18,7 +18,6 @@
 		F183D73622F25F02009EEF67 /* StarsCommunityNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F183D73522F25F02009EEF67 /* StarsCommunityNewsUITests.swift */; };
 		F183D74422F26049009EEF67 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F183D74322F26049009EEF67 /* MainTabbarViewController.swift */; };
 		F19F049922F28AEB0033BA0F /* ArticlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F049822F28AEB0033BA0F /* ArticlesModel.swift */; };
-		F19F049B22F2AAA30033BA0F /* ArticleListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F049A22F2AAA30033BA0F /* ArticleListTableViewController.swift */; };
 		F19F049D22F2BD9D0033BA0F /* ArticleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F049C22F2BD9D0033BA0F /* ArticleCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		F183D73722F25F02009EEF67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F183D74322F26049009EEF67 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		F19F049822F28AEB0033BA0F /* ArticlesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesModel.swift; sourceTree = "<group>"; };
-		F19F049A22F2AAA30033BA0F /* ArticleListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListTableViewController.swift; sourceTree = "<group>"; };
 		F19F049C22F2BD9D0033BA0F /* ArticleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,7 +133,6 @@
 			children = (
 				F183D71322F25F01009EEF67 /* AppDelegate.swift */,
 				F19F049822F28AEB0033BA0F /* ArticlesModel.swift */,
-				F19F049A22F2AAA30033BA0F /* ArticleListTableViewController.swift */,
 				F19F049C22F2BD9D0033BA0F /* ArticleCollectionViewController.swift */,
 				F183D74322F26049009EEF67 /* MainTabbarViewController.swift */,
 				F183D71922F25F02009EEF67 /* Main.storyboard */,
@@ -395,7 +392,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F19F049B22F2AAA30033BA0F /* ArticleListTableViewController.swift in Sources */,
 				F19F049D22F2BD9D0033BA0F /* ArticleCollectionViewController.swift in Sources */,
 				F183D74422F26049009EEF67 /* MainTabbarViewController.swift in Sources */,
 				F183D71422F25F01009EEF67 /* AppDelegate.swift in Sources */,
@@ -576,7 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52FMEHS7ZM;
+				DEVELOPMENT_TEAM = R95N85PZ76;
 				INFOPLIST_FILE = StarsCommunityNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -595,7 +591,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52FMEHS7ZM;
+				DEVELOPMENT_TEAM = R95N85PZ76;
 				INFOPLIST_FILE = StarsCommunityNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

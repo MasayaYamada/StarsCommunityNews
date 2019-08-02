@@ -17,24 +17,25 @@ class ArticleCollectionViewController: UICollectionViewController {
     var article:Article?
     var currentString = ""
     
-    //@IBOutlet weak var articleTitle: UILabel!
-    @IBOutlet weak var articleTitle: UILabel!
-    
     let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
     let ITEM_ELEMENT_NAME = "item"
     let TITLE_ELEMENT_NAME = "title"
     let LINK_ELEMENT_NAME = "link"
     let ENCLOSURE_ELEMENT_NAME = "enclosure"
     
- 
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        articleTitle = cell.contentView.viewWithTag(1) as? UILabel
-        articleTitle.text = articles[indexPath.row].title
+        let label = cell.contentView.viewWithTag(1) as! UILabel
+        label.text = articles[indexPath.row].title
+        print("label : \(label)")
         return cell
     }
     
@@ -81,6 +82,10 @@ class ArticleCollectionViewController: UICollectionViewController {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         self.collectionView.reloadData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
 

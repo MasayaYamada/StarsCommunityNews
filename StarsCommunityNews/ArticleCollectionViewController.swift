@@ -23,10 +23,6 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     let LINK_ELEMENT_NAME = "link"
     let ENCLOSURE_ELEMENT_NAME = "enclosure"
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
     }
@@ -39,8 +35,19 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         return cell
     }
     
+    // セルが選択されたときの処理
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("\(articles[indexPath.row].title)がtapされたよ")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        layout.minimumInteritemSpacing = 5
+        layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: self.collectionView.frame.size.height/3)
+        
         startDownload()
     }
     
@@ -74,6 +81,8 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         case LINK_ELEMENT_NAME:
             self.article?.articleUrl = currentString
             print("link element \(currentString)")
+//        case ENCLOSURE_ELEMENT_NAME:
+//            self.article?.imageUrl = attributeDict["url"]!
         case ITEM_ELEMENT_NAME:
             self.articles.append(self.article!)
         default: break

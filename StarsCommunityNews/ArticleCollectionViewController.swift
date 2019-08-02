@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class ArticleCollectionViewController: UICollectionViewController {
+class ArticleCollectionViewController: UICollectionViewController, XMLParserDelegate {
 
     var parser:XMLParser!
     var articles = [Article]()
@@ -44,12 +44,12 @@ class ArticleCollectionViewController: UICollectionViewController {
         startDownload()
     }
     
-    func startDownload(){
+    func startDownload() {
         self.articles = []
         if let url = URL(string: JAPAN_URL) {
             if let parser = XMLParser(contentsOf: url) {
                 self.parser = parser
-                self.parser.delegate = self as? XMLParserDelegate
+                self.parser.delegate = self
                 self.parser.parse()
             }
         }

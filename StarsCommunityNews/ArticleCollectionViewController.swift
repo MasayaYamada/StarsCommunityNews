@@ -21,6 +21,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     let ITEM_ELEMENT_NAME = "item"
     let TITLE_ELEMENT_NAME = "title"
     let LINK_ELEMENT_NAME = "link"
+    let FIGURE_ELEMENT_NAME = "figure"
     let ENCLOSURE_ELEMENT_NAME = "enclosure"
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,8 +82,9 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         case LINK_ELEMENT_NAME:
             self.article?.articleUrl = currentString
             print("link element \(currentString)")
-//        case ENCLOSURE_ELEMENT_NAME:
-//            self.article?.imageUrl = attributeDict["url"]!
+        case FIGURE_ELEMENT_NAME:
+            self.article?.imageUrl = currentString
+            print("image URL \(currentString)")
         case ITEM_ELEMENT_NAME:
             self.articles.append(self.article!)
         default: break

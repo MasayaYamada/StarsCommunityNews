@@ -21,6 +21,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     
     var entryTitle = ""
     var entryURL = ""
+    var entryContent = ""
     var entryImg = ""
     
     
@@ -28,6 +29,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     let ITEM_ELEMENT_NAME = "item"
     let TITLE_ELEMENT_NAME = "title"
     let LINK_ELEMENT_NAME = "link"
+    let CONTENT_ELEMENT_NAME = "content:encoded"
     let ENCLOSURE_ELEMENT_NAME = "enclosure"
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,10 +71,9 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         }
     }
     
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict:[String : String] = [:]){
         
-        if elementName == ITEM_ELEMENT_NAME // finds the beginning of an item - that is the  tag
-        {
+        if elementName == ITEM_ELEMENT_NAME {
             weAreInsideAnItem = true
             self.article = Article()
         }
@@ -85,9 +86,9 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
                 case LINK_ELEMENT_NAME:
                     currentParsedElement = elementName
                     entryURL = ""
-                case ENCLOSURE_ELEMENT_NAME:
+                case CONTENT_ELEMENT_NAME:
                     currentParsedElement = elementName
-                    entryImg = attributeDict["url"]!
+                    entryContent = ""
             default:
                 break
             }
@@ -103,6 +104,8 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
                 entryTitle = entryTitle + string
             case LINK_ELEMENT_NAME:
                 entryURL = entryURL + string
+            case CONTENT_ELEMENT_NAME:
+                entryContent = entryContent + string
             default:
                 break
             }
@@ -126,8 +129,8 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
             print("title :\(entryTitle)")
             self.article?.articleUrl = entryURL
             print("url \(entryURL)")
-            self.article?.imageUrl = entryImg
-            print("image \(entryImg)")
+            self.article?.imageUrl = entryContent
+            print("content \(entryContent)")
             self.articles.append(article!)
             weAreInsideAnItem = false
         }

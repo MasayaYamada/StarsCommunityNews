@@ -15,13 +15,19 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     var parser:XMLParser!
     var articles = [Article]()
     var article:Article?
-    var currentString = ""
+    var currentParsedElement = ""
+    var img:  [AnyObject] = []
+    var weAreInsideAnItem = false
+    
+    var entryTitle = ""
+    var entryURL = ""
+    var entryImg = ""
+    
     
     let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
     let ITEM_ELEMENT_NAME = "item"
     let TITLE_ELEMENT_NAME = "title"
     let LINK_ELEMENT_NAME = "link"
-    let FIGURE_ELEMENT_NAME = "figure"
     let ENCLOSURE_ELEMENT_NAME = "enclosure"
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -64,30 +70,66 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        self.currentString = ""
-        if elementName == ITEM_ELEMENT_NAME {
+        
+        if elementName == ITEM_ELEMENT_NAME // finds the beginning of an item - that is the  tag
+        {
+            weAreInsideAnItem = true
             self.article = Article()
         }
+        
+        if weAreInsideAnItem {
+            switch elementName {
+                case TITLE_ELEMENT_NAME:
+                    currentParsedElement = elementName
+                    entryTitle = ""
+                case LINK_ELEMENT_NAME:
+                    currentParsedElement = elementName
+                    entryURL = ""
+                case ENCLOSURE_ELEMENT_NAME:
+                    currentParsedElement = elementName
+                    entryImg = attributeDict["url"]!
+            default:
+                break
+            }
+        }
+        
+        
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        self.currentString += string
+        if weAreInsideAnItem {
+            switch currentParsedElement {
+            case TITLE_ELEMENT_NAME:
+                entryTitle = entryTitle + string
+            case LINK_ELEMENT_NAME:
+                entryURL = entryURL + string
+            default:
+                break
+            }
+        }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        switch elementName {
-        case TITLE_ELEMENT_NAME:
-            self.article?.title = currentString
-            print("element title name : \(currentString)")
-        case LINK_ELEMENT_NAME:
-            self.article?.articleUrl = currentString
-            print("link element \(currentString)")
-        case FIGURE_ELEMENT_NAME:
-            self.article?.imageUrl = currentString
-            print("image URL \(currentString)")
-        case ITEM_ELEMENT_NAME:
-            self.articles.append(self.article!)
-        default: break
+        if weAreInsideAnItem {
+            switch elementName {
+            case TITLE_ELEMENT_NAME:
+                currentParsedElement = ""
+            case LINK_ELEMENT_NAME:
+                currentParsedElement = ""
+            default:
+                break
+            }
+        }
+        
+        if elementName == ITEM_ELEMENT_NAME {
+            self.article?.title = entryTitle
+            print("title :\(entryTitle)")
+            self.article?.articleUrl = entryURL
+            print("url \(entryURL)")
+            self.article?.imageUrl = entryImg
+            print("image \(entryImg)")
+            self.articles.append(article!)
+            weAreInsideAnItem = false
         }
     }
     

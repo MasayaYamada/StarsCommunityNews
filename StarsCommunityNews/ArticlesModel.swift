@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Article {
+struct Article {
     var title: String = ""
     var articleUrl: String = ""
     var imageUrl: String = ""

@@ -19,14 +19,15 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     var article:Article?
     var currentParsedElement = ""
     
-    let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
-    let ITEM_ELEMENT_NAME = "item"
-    let TITLE_ELEMENT_NAME = "title"
-    let LINK_ELEMENT_NAME = "link"
-    let CONTENT_ELEMENT_NAME = "content:encoded"
-    let FIGURE_ELEMENT_NAME = "figure"
-    let ENCLOSURE_ELEMENT_NAME = "enclosure"
     
+    let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
+//    let ITEM_ELEMENT_NAME = "item"
+//    let TITLE_ELEMENT_NAME = "title"
+//    let LINK_ELEMENT_NAME = "link"
+//    let CONTENT_ELEMENT_NAME = "content:encoded"
+//    let FIGURE_ELEMENT_NAME = "figure"
+//    let ENCLOSURE_ELEMENT_NAME = "enclosure"
+//
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
     }
@@ -54,32 +55,31 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: self.collectionView.frame.size.height/3)
         
         startDownload()
-
     }
     
     func startDownload() {
-        self.articles = []
-        self.article = Article()
+        articles = []
         
         Alamofire.request(JAPAN_URL).response { response in
+            self.article = Article()
             let xml = SWXMLHash.parse(response.data!)
                 for elem in xml["rss"]["channel"]["item"].all {
                     
                     self.article?.title = elem["title"].element!.text
                     print("title : \(elem["title"].element!.text)")
-                    
+
                     self.article?.articleUrl = elem["link"].element!.text
-                    print("URL : \(elem["link"].element!.text))")
-                    
-                    let contentData = elem["content:encoded"].element!.text
-                    let getURL = String(describing:self.detectLinks(contentData))
-                    self.article?.imageUrl = getURL
-                    print("url : \(getURL)")
+                    print("URL : \(elem["link"].element!.text)")
+
+//                    let contentData = elem["content:encoded"].element!.text
+//                    let getURL = String(describing:self.detectLinks(contentData))
+//                    self.article?.imageUrl = getURL
+//                    print("url : \(getURL)")
+                    self.articles.append(self.article!)
                     
                 }
+            
             }
-            self.articles.append(self.article!)
-        
     }
     
     
@@ -158,7 +158,6 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
 //        }
 //    }
 //
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

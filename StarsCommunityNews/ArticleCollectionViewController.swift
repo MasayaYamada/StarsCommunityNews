@@ -18,6 +18,8 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     var articles = [Article]()
     var article:Article?
     var currentParsedElement = ""
+    //var currentArticle:[AnyObject] = []
+    
     
     
     let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
@@ -58,25 +60,28 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     }
     
     func startDownload() {
-        articles = []
+        
+        self.article = Article()
+        self.articles = []
         
         Alamofire.request(JAPAN_URL).response { response in
-            self.article = Article()
             let xml = SWXMLHash.parse(response.data!)
+            
                 for elem in xml["rss"]["channel"]["item"].all {
-                    
-                    self.article?.title = elem["title"].element!.text
+                    let currentArticle = elem["title"].element!.text
+                    self.article?.title = currentArticle
                     print("title : \(elem["title"].element!.text)")
 
+                    
                     self.article?.articleUrl = elem["link"].element!.text
                     print("URL : \(elem["link"].element!.text)")
 
-//                    let contentData = elem["content:encoded"].element!.text
-//                    let getURL = String(describing:self.detectLinks(contentData))
-//                    self.article?.imageUrl = getURL
-//                    print("url : \(getURL)")
-                    self.articles.append(self.article!)
                     
+                    let contentData = elem["content:encoded"].element!.text
+                    let getURL = String(describing:self.detectLinks(contentData))
+                    self.article?.imageUrl = getURL
+                    print("url : \(getURL)")
+                    self.articles.append(self.article!)
                 }
             
             }

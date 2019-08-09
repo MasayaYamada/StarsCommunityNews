@@ -7,17 +7,23 @@
 //
 
 import UIKit
-import SWXMLHash
-import Alamofire
 
 private let reuseIdentifier = "Cell"
 
-class ArticleCollectionViewController: UICollectionViewController {
-
-    var articles: Array = [Article]()
+class ArticleCollectionViewController: UICollectionViewController, XMLParserDelegate {
+    
+    var parser:XMLParser!
+    var articles = [Article]()
     var article:Article?
+    var currentString = ""
+    
     
     let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
+    let ITEM_ELEMENT_NAME = "item"
+    let TITLE_ELEMENT_NAME = "title"
+    let LINK_ELEMENT_NAME = "link"
+    //let ENCLOSURE_ELEMENT_NAME = "enclosure"
+    let CONTENT_ELEMENT_NAME = "content:encoded"
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -30,23 +36,50 @@ class ArticleCollectionViewController: UICollectionViewController {
         startDownload()
     }
     
-   func startDownload() {
-        
+    func startDownload(){
         self.articles = []
-        
-        Alamofire.request(JAPAN_URL).response { response in
-            let xml = SWXMLHash.parse(response.data!)
-            let items = xml["rss"]["channel"]["item"]
-            for element in items.all {
-                if let titleElement = element["title"].element {
-                    if let urlElement = element["link"].element {
-                    self.articles.append(Article(title: titleElement.text, articleUrl: urlElement.text))
-                    print("test title : \(self.articles)")
-                    }
-                }
+        if let url = URL(string: JAPAN_URL) {
+            if let parser = XMLParser(contentsOf: url) {
+                self.parser = parser
+                self.parser.delegate = self
+                self.parser.parse()
             }
         }
-        
+    }
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        self.currentString = ""
+        if elementName == ITEM_ELEMENT_NAME {
+            self.article = Article()
+        }
+    }
+    
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        self.currentString += string
+    }
+    
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        switch elementName {
+        case TITLE_ELEMENT_NAME:
+            self.article?.title = currentString
+            print("element title name : \(currentString)")
+        case LINK_ELEMENT_NAME:
+            self.article?.articleUrl = currentString
+            print("link element \(currentString)")
+        case CONTENT_ELEMENT_NAME:
+            let imageURL = detectLinks(str: currentString)
+            self.article?.imageUrl = imageURL
+            print("image url \(imageURL)")
+        case ITEM_ELEMENT_NAME:
+            self.articles.append(self.article!)
+        default: break
+        }
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        self.collectionView.reloadData()
     }
     
     
@@ -54,7 +87,7 @@ class ArticleCollectionViewController: UICollectionViewController {
         print("count : \(articles.count)")
         return articles.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         let label = cell.contentView.viewWithTag(1) as! UILabel
@@ -67,22 +100,30 @@ class ArticleCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(articles[indexPath.row].title)がtapされたよ")
         print("\(articles[indexPath.row].articleUrl)がtapされたよ")
-        //print("\(articles[indexPath.row].imageUrl)がタップされたよ")
+        print("\(articles[indexPath.row].imageUrl)がタップされたよ")
     }
     
     // find URL FROM <content:encoded>
-    func detectLinks(_ str: String) -> [NSTextCheckingResult] {
-        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        if let d = detector {
-            return d.matches(in: str, range: NSMakeRange(0, str.count))
-        } else {
-            return []
+    func detectLinks(str: String) -> String {
+        
+        var currentURL = ""
+        
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(in: str, options: [], range: NSRange(location: 0, length: str.utf16.count))
+        for match in matches {
+            guard let range = Range(match.range, in: str) else { continue }
+            let url = str[range]
+            print(url)
+            currentURL = String(url)
         }
+        return currentURL
     }
     
-   override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
+    
+    
 }
+
+

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,19 +32,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="160"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="Title" text="article" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z46-hZ-Fnt" userLabel="Title">
-                                            <rect key="frame" x="17.999999999999996" y="69.666666666666671" width="47.666666666666657" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP8-g6-QhM">
+                                            <rect key="frame" x="-1" y="0.0" width="374" height="160"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="Title" text="article" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z46-hZ-Fnt" userLabel="Title">
+                                            <rect key="frame" x="-1" y="122" width="374" height="44"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="0.5117722602739726" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="z46-hZ-Fnt" firstAttribute="leading" secondItem="WQT-l3-oqA" secondAttribute="leading" constant="18" id="74Q-sE-nj9"/>
-                                    <constraint firstItem="z46-hZ-Fnt" firstAttribute="centerY" secondItem="WQT-l3-oqA" secondAttribute="centerY" id="Q23-ka-mQs"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z46-hZ-Fnt" secondAttribute="trailing" symbolic="YES" id="xmG-IT-Des"/>
+                                    <constraint firstItem="EP8-g6-QhM" firstAttribute="top" secondItem="WQT-l3-oqA" secondAttribute="top" id="8FE-LF-28m"/>
+                                    <constraint firstAttribute="bottom" secondItem="EP8-g6-QhM" secondAttribute="bottom" id="8PD-fa-nwI"/>
+                                    <constraint firstItem="z46-hZ-Fnt" firstAttribute="top" secondItem="WQT-l3-oqA" secondAttribute="topMargin" constant="70" id="B4j-Hp-Waa"/>
+                                    <constraint firstItem="EP8-g6-QhM" firstAttribute="leading" secondItem="WQT-l3-oqA" secondAttribute="leading" constant="-1" id="Bxc-4g-Xrw"/>
+                                    <constraint firstItem="z46-hZ-Fnt" firstAttribute="trailing" secondItem="EP8-g6-QhM" secondAttribute="trailing" id="RSa-Lz-XVL"/>
+                                    <constraint firstItem="z46-hZ-Fnt" firstAttribute="leading" secondItem="EP8-g6-QhM" secondAttribute="leading" id="atT-ax-zun"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="z46-hZ-Fnt" secondAttribute="bottom" constant="-14" id="i8X-pb-Zp6"/>
+                                    <constraint firstAttribute="trailing" secondItem="EP8-g6-QhM" secondAttribute="trailing" constant="1" id="w9F-cy-yhv"/>
                                 </constraints>
+                                <connections>
+                                    <segue destination="tCO-QD-5HE" kind="show" id="ONv-Al-Inn"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -56,6 +70,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oL-qn-Zy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2056.8000000000002" y="-279.31034482758622"/>
+        </scene>
+        <!--Article Detail View Controller-->
+        <scene sceneID="ABd-Cd-hRr">
+            <objects>
+                <viewController id="tCO-QD-5HE" customClass="ArticleDetailViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j9t-JL-Dfr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAN-bm-zXt">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="yAN-bm-zXt" secondAttribute="bottom" id="4J2-BG-rrM"/>
+                            <constraint firstItem="yAN-bm-zXt" firstAttribute="leading" secondItem="j9t-JL-Dfr" secondAttribute="leading" id="AAD-F7-Uev"/>
+                            <constraint firstAttribute="trailing" secondItem="yAN-bm-zXt" secondAttribute="trailing" id="LIc-Mi-iWr"/>
+                            <constraint firstItem="yAN-bm-zXt" firstAttribute="top" secondItem="UCw-KU-Rbo" secondAttribute="top" id="bwq-yM-C7x"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UCw-KU-Rbo"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="yAN-bm-zXt" id="jxb-24-TLj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bWS-7v-Ks6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3013.5999999999999" y="-279.31034482758622"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Hz-Ut-TtR">

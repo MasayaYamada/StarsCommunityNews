@@ -22,7 +22,6 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     let ITEM_ELEMENT_NAME = "item"
     let TITLE_ELEMENT_NAME = "title"
     let LINK_ELEMENT_NAME = "link"
-    //let ENCLOSURE_ELEMENT_NAME = "enclosure"
     let CONTENT_ELEMENT_NAME = "content:encoded"
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,10 +88,26 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        let label = cell.contentView.viewWithTag(1) as! UILabel
-        label.text = articles[indexPath.row].title
-        print("index path row : \(articles[indexPath.row])")
+        
+        let imageUrl = URL(string: articles[indexPath.row].imageUrl)
+        
+        do {
+            let data = try Data(contentsOf: imageUrl!)
+            let currentImage = UIImage(data: data)
+            let cellImage = cell.contentView.viewWithTag(1) as! UIImageView
+            cellImage.image = currentImage
+            
+        } catch {
+            print("error だよ")
+        }
+       
+        
+        let cellLabel = cell.contentView.viewWithTag(2) as! UILabel
+        cellLabel.text = articles[indexPath.row].title
+        cellLabel.numberOfLines = 0;
+        
         return cell
     }
     

@@ -21,13 +21,6 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     var tappedArticleTitle = ""
     var tappedImageURL = ""
     
-    
-    let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
-    let ITEM_ELEMENT_NAME = "item"
-    let TITLE_ELEMENT_NAME = "title"
-    let LINK_ELEMENT_NAME = "link"
-    let CONTENT_ELEMENT_NAME = "content:encoded"
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -43,7 +36,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     
     func startDownload(){
         self.articles = []
-        if let url = URL(string: JAPAN_URL) {
+        if let url = URL(string: GlobalContents.RSS_URL.JAPAN_URL) {
             if let parser = XMLParser(contentsOf: url) {
                 self.parser = parser
                 self.parser.delegate = self
@@ -54,7 +47,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         self.currentString = ""
-        if elementName == ITEM_ELEMENT_NAME {
+        if elementName == GlobalContents.ITEM_ELEMENT_NAME {
             self.article = Article()
         }
     }
@@ -67,17 +60,17 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch elementName {
-        case TITLE_ELEMENT_NAME:
+        case GlobalContents.TITLE_ELEMENT_NAME:
             self.article?.title = currentString
             print("element title name : \(currentString)")
-        case LINK_ELEMENT_NAME:
+        case GlobalContents.LINK_ELEMENT_NAME:
             self.article?.articleUrl = currentString
             print("link element \(currentString)")
-        case CONTENT_ELEMENT_NAME:
+        case GlobalContents.CONTENT_ELEMENT_NAME:
             let imageURL = detectLinks(str: currentString)
             self.article?.imageUrl = imageURL
             print("image url \(imageURL)")
-        case ITEM_ELEMENT_NAME:
+        case GlobalContents.ITEM_ELEMENT_NAME:
             self.articles.append(self.article!)
         default: break
         }

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Japan-->
+        <!--ArticleCollection-->
         <scene sceneID="sTf-bG-D1y">
             <objects>
-                <collectionViewController clearsSelectionOnViewWillAppear="NO" id="eGF-wx-9j2" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController clearsSelectionOnViewWillAppear="NO" id="eGF-wx-9j2" userLabel="ArticleCollection" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="OCK-1O-tcl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,7 +62,7 @@
                             <outlet property="delegate" destination="eGF-wx-9j2" id="2ME-fc-Ena"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Japan" image="first" id="AVC-6e-z9n"/>
+                    <tabBarItem key="tabBarItem" title="ArticleCollection" id="AVC-6e-z9n"/>
                     <connections>
                         <segue destination="tCO-QD-5HE" kind="show" identifier="toArticleDetailVC" id="6Ls-QG-vlI"/>
                     </connections>
@@ -145,7 +145,4 @@
             <point key="canvasLocation" x="980" y="-279.31034482758622"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="first" width="30" height="30"/>
-    </resources>
 </document>

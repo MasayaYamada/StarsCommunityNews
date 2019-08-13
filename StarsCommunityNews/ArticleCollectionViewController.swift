@@ -17,6 +17,10 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     var article:Article?
     var currentString = ""
     
+    var tappedArticleURL = ""
+    var tappedArticleTitle = ""
+    var tappedImageURL = ""
+    
     
     let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
     let ITEM_ELEMENT_NAME = "item"
@@ -34,6 +38,8 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         
         startDownload()
     }
+    
+
     
     func startDownload(){
         self.articles = []
@@ -94,18 +100,20 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         let imageUrl = URL(string: articles[indexPath.row].imageUrl)
         
         do {
-            let data = try Data(contentsOf: imageUrl!)
-            let currentImage = UIImage(data: data)
-            let cellImage = cell.contentView.viewWithTag(1) as! UIImageView
-            cellImage.image = currentImage
+                let data = try Data(contentsOf: imageUrl!)
+                let currentImage = UIImage(data: data)
+                let cellImage = cell.contentView.viewWithTag(1) as! UIImageView
+            
+            DispatchQueue.main.async {
+                cellImage.image = currentImage
+            }
             
         } catch {
             print("error だよ")
         }
-       
         
         let cellLabel = cell.contentView.viewWithTag(2) as! UILabel
-        cellLabel.text = articles[indexPath.row].title
+        cellLabel.text = self.articles[indexPath.row].title
         cellLabel.numberOfLines = 0;
         
         return cell
@@ -116,7 +124,23 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         print("\(articles[indexPath.row].title)がtapされたよ")
         print("\(articles[indexPath.row].articleUrl)がtapされたよ")
         print("\(articles[indexPath.row].imageUrl)がタップされたよ")
+        
+        tappedArticleTitle = articles[indexPath.row].title
+        tappedArticleURL = articles[indexPath.row].articleUrl
+        tappedImageURL = articles[indexPath.row].imageUrl
+        
+        self.performSegue(withIdentifier: "toArticleDetailVC", sender: nil)
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toArticleDetailVC" {
+            let nextVC = segue.destination as! ArticleDetailViewController
+            nextVC.articleLink = tappedArticleURL
+        }
+        
+    }
+    
     
     // find URL FROM <content:encoded>
     func detectLinks(str: String) -> String {
@@ -128,7 +152,6 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         for match in matches {
             guard let range = Range(match.range, in: str) else { continue }
             let url = str[range]
-            print(url)
             currentURL = String(url)
         }
         return currentURL

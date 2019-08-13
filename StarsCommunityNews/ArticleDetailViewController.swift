@@ -13,12 +13,14 @@ class ArticleDetailViewController: UIViewController {
 
 
     @IBOutlet weak var webView: WKWebView!
-    var article:Article?
+    
+    var articleLink:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let url = URL(string: self.article!.articleUrl) {
+        if let url = URL(string: self.articleLink) {
             let request = URLRequest(url: url)
+            print("url on webView :\(request)")
             self.webView.load(request)
         }
     }

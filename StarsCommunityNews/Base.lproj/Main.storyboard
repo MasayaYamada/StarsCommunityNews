@@ -55,9 +55,6 @@
                                     <constraint firstAttribute="bottomMargin" secondItem="z46-hZ-Fnt" secondAttribute="bottom" constant="-14" id="i8X-pb-Zp6"/>
                                     <constraint firstAttribute="trailing" secondItem="EP8-g6-QhM" secondAttribute="trailing" constant="1" id="w9F-cy-yhv"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="tCO-QD-5HE" kind="show" id="ONv-Al-Inn"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -66,6 +63,9 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Japan" image="first" id="AVC-6e-z9n"/>
+                    <connections>
+                        <segue destination="tCO-QD-5HE" kind="show" identifier="toArticleDetailVC" id="6Ls-QG-vlI"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oL-qn-Zy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,13 +74,13 @@
         <!--Article Detail View Controller-->
         <scene sceneID="ABd-Cd-hRr">
             <objects>
-                <viewController id="tCO-QD-5HE" customClass="ArticleDetailViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArticleDetailVC" id="tCO-QD-5HE" customClass="ArticleDetailViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j9t-JL-Dfr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAN-bm-zXt">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LvV-lZ-39A">
+                                <rect key="frame" x="0.0" y="88" width="381" height="724"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -90,15 +90,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="yAN-bm-zXt" secondAttribute="bottom" id="4J2-BG-rrM"/>
-                            <constraint firstItem="yAN-bm-zXt" firstAttribute="leading" secondItem="j9t-JL-Dfr" secondAttribute="leading" id="AAD-F7-Uev"/>
-                            <constraint firstAttribute="trailing" secondItem="yAN-bm-zXt" secondAttribute="trailing" id="LIc-Mi-iWr"/>
-                            <constraint firstItem="yAN-bm-zXt" firstAttribute="top" secondItem="UCw-KU-Rbo" secondAttribute="top" id="bwq-yM-C7x"/>
+                            <constraint firstAttribute="bottom" secondItem="LvV-lZ-39A" secondAttribute="bottom" id="FMA-WN-PE1"/>
+                            <constraint firstItem="LvV-lZ-39A" firstAttribute="top" secondItem="UCw-KU-Rbo" secondAttribute="top" id="Txo-T8-afc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LvV-lZ-39A" secondAttribute="trailing" constant="-22" id="WJu-RX-jf7"/>
+                            <constraint firstItem="LvV-lZ-39A" firstAttribute="leading" secondItem="j9t-JL-Dfr" secondAttribute="leading" id="XuJ-h1-5ho"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UCw-KU-Rbo"/>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="yAN-bm-zXt" id="jxb-24-TLj"/>
+                        <outlet property="webView" destination="LvV-lZ-39A" id="9y5-bB-iNm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWS-7v-Ks6" userLabel="First Responder" sceneMemberID="firstResponder"/>

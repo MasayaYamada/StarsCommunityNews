@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ArticleCollection-->
+        <!--Japan-->
         <scene sceneID="sTf-bG-D1y">
             <objects>
-                <collectionViewController clearsSelectionOnViewWillAppear="NO" id="eGF-wx-9j2" userLabel="ArticleCollection" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="Japan" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="eGF-wx-9j2" userLabel="Japan" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="OCK-1O-tcl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,14 +62,109 @@
                             <outlet property="delegate" destination="eGF-wx-9j2" id="2ME-fc-Ena"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="ArticleCollection" id="AVC-6e-z9n"/>
+                    <tabBarItem key="tabBarItem" title="Japan" id="AVC-6e-z9n"/>
                     <connections>
                         <segue destination="tCO-QD-5HE" kind="show" identifier="toArticleDetailVC" id="6Ls-QG-vlI"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oL-qn-Zy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2056.8000000000002" y="-279.31034482758622"/>
+            <point key="canvasLocation" x="2014" y="-1152"/>
+        </scene>
+        <!--Okinawa-->
+        <scene sceneID="4zI-0c-Vxx">
+            <objects>
+                <collectionViewController storyboardIdentifier="Okinawa" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ECD-Sq-cDc" userLabel="Okinawa" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="BYe-N8-BCP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="awj-Kb-at9">
+                            <size key="itemSize" width="375" height="169"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="Cell" id="f5r-Ws-Ckh" userLabel="Cell">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="169"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="169"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KVa-qj-dVC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="169"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYe-HC-p71">
+                                            <rect key="frame" x="0.0" y="148.66666666666666" width="375" height="20.333333333333343"/>
+                                            <color key="backgroundColor" white="0.66295662100456609" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="WYe-HC-p71" secondAttribute="bottom" id="BId-bB-l06"/>
+                                    <constraint firstItem="KVa-qj-dVC" firstAttribute="top" secondItem="f5r-Ws-Ckh" secondAttribute="top" id="Roq-FY-AEK"/>
+                                    <constraint firstItem="WYe-HC-p71" firstAttribute="leading" secondItem="f5r-Ws-Ckh" secondAttribute="leading" id="UWR-8l-zP2"/>
+                                    <constraint firstAttribute="trailing" secondItem="KVa-qj-dVC" secondAttribute="trailing" id="W3b-tn-kEa"/>
+                                    <constraint firstAttribute="bottom" secondItem="KVa-qj-dVC" secondAttribute="bottom" id="aMg-Ec-oj0"/>
+                                    <constraint firstItem="KVa-qj-dVC" firstAttribute="leading" secondItem="f5r-Ws-Ckh" secondAttribute="leading" id="bH7-Gc-SQX"/>
+                                    <constraint firstItem="WYe-HC-p71" firstAttribute="leading" secondItem="f5r-Ws-Ckh" secondAttribute="leading" id="qx9-v0-Tbd"/>
+                                    <constraint firstAttribute="trailing" secondItem="WYe-HC-p71" secondAttribute="trailing" id="v1j-KP-zUv"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="tCO-QD-5HE" kind="show" id="lo9-Gb-Q3m"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ECD-Sq-cDc" id="cy5-im-Ksh"/>
+                            <outlet property="delegate" destination="ECD-Sq-cDc" id="h9s-wG-92n"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Okinawa" id="Kzt-tL-9sY"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ter-0h-pDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2358" y="-332"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Iku-z2-zAR">
+            <objects>
+                <collectionViewController restorationIdentifier="Korea" storyboardIdentifier="Korea" id="wHz-8S-8g4" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="EaM-HP-qeE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mFO-Dw-ZfL">
+                            <size key="itemSize" width="375" height="175"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wMj-iE-eJL" userLabel="Cell">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="wHz-8S-8g4" id="fzb-xx-tQO"/>
+                            <outlet property="delegate" destination="wHz-8S-8g4" id="Uwa-8P-9IY"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Item" id="8To-u7-y7w"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HqY-TD-Rwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2372" y="472.90640394088672"/>
         </scene>
         <!--Article Detail View Controller-->
         <scene sceneID="ABd-Cd-hRr">
@@ -103,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWS-7v-Ks6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3013.5999999999999" y="-279.31034482758622"/>
+            <point key="canvasLocation" x="4066" y="-294"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Hz-Ut-TtR">
@@ -137,12 +232,17 @@
                         <color key="barTintColor" red="0.73725490199999999" green="0.62352941179999999" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="eGF-wx-9j2" kind="relationship" relationship="viewControllers" id="2aG-Yf-HPf"/>
+                        <segue destination="eGF-wx-9j2" kind="relationship" relationship="viewControllers" id="BPK-fj-rXp"/>
+                        <segue destination="ECD-Sq-cDc" kind="relationship" relationship="viewControllers" id="neT-Pp-64B"/>
+                        <segue destination="wHz-8S-8g4" kind="relationship" relationship="viewControllers" id="V9Y-G6-SbS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bnI-oh-aWK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="-279.31034482758622"/>
+            <point key="canvasLocation" x="1105" y="-279"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lo9-Gb-Q3m"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -21,6 +21,9 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     var tappedArticleTitle = ""
     var tappedImageURL = ""
     
+    var url:URL!
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -29,21 +32,29 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         layout.minimumInteritemSpacing = 5
         layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: self.collectionView.frame.size.height/3)
         
-        startDownload()
+        let identifiy: String = self.restorationIdentifier!
+        
+            if identifiy == "Japan"  {
+                self.url = URL(string: GlobalContents.RSS_URL.JAPAN_URL.rawValue)!
+            }
+            if identifiy == "Okinawa" {
+                self.url = URL(string: GlobalContents.RSS_URL.OKINAWA_URL.rawValue)!
+        }
+        startDownload(currentUrl: url)
+        
     }
     
 
     
-    func startDownload(){
+    func startDownload(currentUrl:URL) {
         self.articles = []
-        if let url = URL(string: GlobalContents.RSS_URL.JAPAN_URL) {
-            if let parser = XMLParser(contentsOf: url) {
+            if let parser = XMLParser(contentsOf: currentUrl) {
                 self.parser = parser
                 self.parser.delegate = self
                 self.parser.parse()
             }
-        }
     }
+        
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         self.currentString = ""
@@ -91,7 +102,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         let imageUrl = URL(string: articles[indexPath.row].imageUrl)
-        
+
         do {
                 let data = try Data(contentsOf: imageUrl!)
                 let currentImage = UIImage(data: data)
@@ -110,6 +121,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         cellLabel.numberOfLines = 0;
         
         return cell
+            
     }
     
     // セルが選択されたときの処理

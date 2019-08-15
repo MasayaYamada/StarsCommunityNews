@@ -12,10 +12,16 @@ struct GlobalContents {
    
    // static let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
     
-    struct RSS_URL {
-        static let JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
-        static let OKINAWA_URL = "https://okinawa.stripes.com/rss/flipboard"
-        static let KOREA_URL = "https://korea.stripes.com/rss/flipboard"
+    enum RSS_URL: String {
+        case JAPAN_URL = "https://japan.stripes.com/rss/flipboard"
+        case OKINAWA_URL = "https://okinawa.stripes.com/rss/flipboard"
+        case KOREA_URL = "https://korea.stripes.com/rss/flipboard"
+    }
+    
+    enum URLITEMS: CaseIterable {
+        case JAPAN
+        case OKINAWA
+        case KOREA
     }
     
     static let ITEM_ELEMENT_NAME = "item"

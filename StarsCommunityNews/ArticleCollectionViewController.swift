@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 private let reuseIdentifier = "Cell"
 
@@ -39,7 +41,10 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
             }
             if identifiy == "Okinawa" {
                 self.url = URL(string: GlobalContents.RSS_URL.OKINAWA_URL.rawValue)!
-        }
+            }
+            if identifiy == "Korea" {
+                	self.url = URL(string: GlobalContents.RSS_URL.KOREA_URL.rawValue)
+            }
         startDownload(currentUrl: url)
         
     }
@@ -102,16 +107,18 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         let imageUrl = URL(string: articles[indexPath.row].imageUrl)
-
+        
         do {
-                let data = try Data(contentsOf: imageUrl!)
-                let currentImage = UIImage(data: data)
-                let cellImage = cell.contentView.viewWithTag(1) as! UIImageView
-            
-            DispatchQueue.main.async {
-                cellImage.image = currentImage
+            let cellImage = cell.contentView.viewWithTag(1) as! UIImageView
+
+            Alamofire.request(imageUrl!).responseImage { response in
+                debugPrint(response.result)
+                if let currentImage = response.result.value {
+                    DispatchQueue.main.async {
+                        cellImage.image = currentImage
+                    }
+                }
             }
-            
         } catch {
             print("error だよ")
         }

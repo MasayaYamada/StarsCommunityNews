@@ -69,7 +69,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oL-qn-Zy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="-1152"/>
+            <point key="canvasLocation" x="2554" y="-1154"/>
         </scene>
         <!--Okinawa-->
         <scene sceneID="4zI-0c-Vxx">
@@ -94,7 +94,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KVa-qj-dVC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="169"/>
+                                            <rect key="frame" x="-1" y="0.0" width="375" height="169"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYe-HC-p71">
                                             <rect key="frame" x="0.0" y="148.66666666666666" width="375" height="20.333333333333343"/>
@@ -109,14 +109,14 @@
                                     <constraint firstAttribute="bottom" secondItem="WYe-HC-p71" secondAttribute="bottom" id="BId-bB-l06"/>
                                     <constraint firstItem="KVa-qj-dVC" firstAttribute="top" secondItem="f5r-Ws-Ckh" secondAttribute="top" id="Roq-FY-AEK"/>
                                     <constraint firstItem="WYe-HC-p71" firstAttribute="leading" secondItem="f5r-Ws-Ckh" secondAttribute="leading" id="UWR-8l-zP2"/>
-                                    <constraint firstAttribute="trailing" secondItem="KVa-qj-dVC" secondAttribute="trailing" id="W3b-tn-kEa"/>
+                                    <constraint firstAttribute="trailing" secondItem="KVa-qj-dVC" secondAttribute="trailing" constant="1" id="W3b-tn-kEa"/>
                                     <constraint firstAttribute="bottom" secondItem="KVa-qj-dVC" secondAttribute="bottom" id="aMg-Ec-oj0"/>
-                                    <constraint firstItem="KVa-qj-dVC" firstAttribute="leading" secondItem="f5r-Ws-Ckh" secondAttribute="leading" id="bH7-Gc-SQX"/>
+                                    <constraint firstItem="KVa-qj-dVC" firstAttribute="leading" secondItem="f5r-Ws-Ckh" secondAttribute="leading" constant="-1" id="bH7-Gc-SQX"/>
                                     <constraint firstItem="WYe-HC-p71" firstAttribute="leading" secondItem="f5r-Ws-Ckh" secondAttribute="leading" id="qx9-v0-Tbd"/>
                                     <constraint firstAttribute="trailing" secondItem="WYe-HC-p71" secondAttribute="trailing" id="v1j-KP-zUv"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="tCO-QD-5HE" kind="show" id="lo9-Gb-Q3m"/>
+                                    <segue destination="tCO-QD-5HE" kind="show" identifier="toArticleDetailVC" id="lo9-Gb-Q3m"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -129,12 +129,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ter-0h-pDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2358" y="-332"/>
+            <point key="canvasLocation" x="2511" y="-294"/>
         </scene>
-        <!--Item-->
+        <!--Korea-->
         <scene sceneID="Iku-z2-zAR">
             <objects>
-                <collectionViewController restorationIdentifier="Korea" storyboardIdentifier="Korea" id="wHz-8S-8g4" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController restorationIdentifier="Korea" storyboardIdentifier="Korea" id="wHz-8S-8g4" userLabel="Korea" customClass="ArticleCollectionViewController" customModule="StarsCommunityNews" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="EaM-HP-qeE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,13 +146,38 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wMj-iE-eJL" userLabel="Cell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="Cell" id="wMj-iE-eJL" userLabel="Cell">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sQt-8A-CFy">
+                                            <rect key="frame" x="-1" y="0.0" width="375" height="175"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="Title" text="article" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGW-Ac-fTe" userLabel="Title">
+                                            <rect key="frame" x="0.0" y="148.33333333333334" width="375" height="26.666666666666657"/>
+                                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.5117722603" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="sQt-8A-CFy" firstAttribute="top" secondItem="wMj-iE-eJL" secondAttribute="top" id="06v-tC-J6y"/>
+                                    <constraint firstItem="GGW-Ac-fTe" firstAttribute="leading" secondItem="wMj-iE-eJL" secondAttribute="leading" id="Gn8-tH-bG8"/>
+                                    <constraint firstAttribute="bottom" secondItem="sQt-8A-CFy" secondAttribute="bottom" id="PEH-97-rfU"/>
+                                    <constraint firstItem="sQt-8A-CFy" firstAttribute="leading" secondItem="wMj-iE-eJL" secondAttribute="leading" constant="-1" id="Rgv-cQ-X64"/>
+                                    <constraint firstAttribute="trailing" secondItem="sQt-8A-CFy" secondAttribute="trailing" constant="1" id="aBX-Mi-RVm"/>
+                                    <constraint firstAttribute="trailing" secondItem="GGW-Ac-fTe" secondAttribute="trailing" id="h0x-sz-3OZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="GGW-Ac-fTe" secondAttribute="bottom" id="hVB-AO-1zF"/>
+                                    <constraint firstItem="sQt-8A-CFy" firstAttribute="baseline" secondItem="GGW-Ac-fTe" secondAttribute="firstBaseline" constant="11.333333333333334" symbolType="layoutAnchor" id="tnM-0e-rRE"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="tCO-QD-5HE" kind="show" identifier="toArticleDetailVC" id="yBS-VI-97n"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -160,7 +185,7 @@
                             <outlet property="delegate" destination="wHz-8S-8g4" id="Uwa-8P-9IY"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Item" id="8To-u7-y7w"/>
+                    <tabBarItem key="tabBarItem" title="Korea" id="8To-u7-y7w"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HqY-TD-Rwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -243,6 +268,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lo9-Gb-Q3m"/>
+        <segue reference="yBS-VI-97n"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import SVGKit
+
 
 private let reuseIdentifier = "Cell"
 
@@ -23,6 +25,9 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     var tappedArticleTitle = ""
     var tappedImageURL = ""
     
+    let starImg = UIImage(named: "star")
+    let starFillImg = UIImage(named: "filledstar")
+    
     var url:URL!
     
     
@@ -36,15 +41,17 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         
         let identifiy: String = self.restorationIdentifier!
         
-            if identifiy == "Japan"  {
-                self.url = URL(string: GlobalContents.RSS_URL.JAPAN_URL.rawValue)!
-            }
-            if identifiy == "Okinawa" {
-                self.url = URL(string: GlobalContents.RSS_URL.OKINAWA_URL.rawValue)!
-            }
-            if identifiy == "Korea" {
-                	self.url = URL(string: GlobalContents.RSS_URL.KOREA_URL.rawValue)
-            }
+        if identifiy == "Japan"  {
+            self.url = URL(string: GlobalContents.RSS_URL.JAPAN_URL.rawValue)!
+        }
+        if identifiy == "Okinawa" {
+            self.url = URL(string: GlobalContents.RSS_URL.OKINAWA_URL.rawValue)!
+        }
+        if identifiy == "Korea" {
+            self.url = URL(string: GlobalContents.RSS_URL.KOREA_URL.rawValue)!
+        }
+        
+        
         startDownload(currentUrl: url)
         
     }
@@ -125,8 +132,9 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         
         let cellLabel = cell.contentView.viewWithTag(2) as! UILabel
         cellLabel.text = self.articles[indexPath.row].title
-        cellLabel.numberOfLines = 0;
-        
+        cellLabel.numberOfLines = 4;
+        cellLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+       
         return cell
             
     }
@@ -172,6 +180,15 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
+//    @IBAction func pushStar(_ sender: Any) {
+//
+//        let filledStar = UIImage(named: "filledstar")
+//
+//        starBtn.imageView?.image = filledStar
+//
+//    }
     
     
 }

@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SVGKit
+import ViewAnimator
 
 
 private let reuseIdentifier = "Cell"
@@ -27,6 +28,8 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     
     let starImg = UIImage(named: "star")
     let starFillImg = UIImage(named: "filledstar")
+    
+    let animations = [AnimationType.from(direction: .bottom, offset: 30.0)]
     
     var url:URL!
     
@@ -56,8 +59,7 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
         
     }
     
-
-    
+     
     func startDownload(currentUrl:URL) {
         self.articles = []
             if let parser = XMLParser(contentsOf: currentUrl) {
@@ -182,14 +184,8 @@ class ArticleCollectionViewController: UICollectionViewController, XMLParserDele
     }
     
     
-//    @IBAction func pushStar(_ sender: Any) {
-//
-//        let filledStar = UIImage(named: "filledstar")
-//
-//        starBtn.imageView?.image = filledStar
-//
-//    }
-    
+
+
     
 }
 

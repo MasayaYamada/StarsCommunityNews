@@ -73,7 +73,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oL-qn-Zy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2552.8000000000002" y="-1154.1871921182267"/>
+            <point key="canvasLocation" x="2510" y="-1154"/>
         </scene>
         <!--Okinawa-->
         <scene sceneID="4zI-0c-Vxx">
@@ -193,7 +193,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HqY-TD-Rwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2372" y="472.90640394088672"/>
+            <point key="canvasLocation" x="2510" y="476"/>
         </scene>
         <!--Article Detail View Controller-->
         <scene sceneID="ABd-Cd-hRr">
